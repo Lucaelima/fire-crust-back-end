@@ -11,6 +11,7 @@ Backend em Python com FastAPI e PostgreSQL para o site de pedidos da pizzaria Fi
 - Resumo da jornada do cliente com pedidos abertos e valor gasto.
 - Configuração pronta para PostgreSQL em produção.
 - Carregamento de variáveis com `python-dotenv` a partir do arquivo `.env`.
+- Seed de itens iniciais de cardápio para PostgreSQL (`db/seed_menu_items.sql`).
 - Testes automatizados usando SQLite em memória.
 
 ## Rodando localmente
@@ -35,6 +36,24 @@ A aplicação chama `load_dotenv()` na inicialização e depois monta as setting
 | `DATABASE_URL` | Conexão SQLAlchemy | `postgresql+psycopg://firecrust:firecrust@localhost:5433/firecrust` |
 | `JWT_SECRET_KEY` | Chave do token | `change-me` |
 | `ACCESS_TOKEN_EXPIRE_MINUTES` | Expiração do token | `720` |
+
+## Seed de itens no PostgreSQL
+
+Se você iniciar via Docker Compose em um volume novo, o Postgres executa automaticamente o script:
+
+- `db/seed_menu_items.sql`
+
+Comando:
+
+```bash
+docker compose up -d
+```
+
+Se o banco já existir e você quiser aplicar manualmente:
+
+```bash
+docker compose exec db psql -U firecrust -d firecrust -f /docker-entrypoint-initdb.d/01_seed_menu_items.sql
+```
 
 ## Endpoints principais
 

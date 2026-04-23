@@ -88,3 +88,9 @@ async def test_customer_order_flow():
         summary_response = await client.get("/api/v1/dashboard/summary", headers=headers)
         assert summary_response.status_code == 200
         assert summary_response.json() == {"total_orders": 1, "open_orders": 1, "total_spent": 105.8}
+
+async def test_unauthenticated_order():
+    await seed_schema()
+    async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as client:
+        response = await client.post("/api/v1/orders", json={"items": []})
+        assert response.status_code == 401

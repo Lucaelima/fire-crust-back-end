@@ -1,3 +1,25 @@
+Metadata-Version: 2.4
+Name: fire-crust-back-end
+Version: 0.1.0
+Summary: SaaS backend for Fire Crust pizza ordering built with FastAPI and PostgreSQL
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: fastapi<1.0.0,>=0.115.0
+Requires-Dist: uvicorn[standard]<1.0.0,>=0.30.0
+Requires-Dist: sqlalchemy<3.0.0,>=2.0.36
+Requires-Dist: psycopg[binary]<4.0.0,>=3.2.0
+Requires-Dist: pydantic-settings<3.0.0,>=2.6.0
+Requires-Dist: python-jose[cryptography]<4.0.0,>=3.3.0
+Requires-Dist: passlib[bcrypt]<2.0.0,>=1.7.4
+Requires-Dist: python-multipart<1.0.0,>=0.0.12
+Requires-Dist: email-validator<3.0.0,>=2.2.0
+Requires-Dist: python-dotenv<2.0.0,>=1.0.1
+Provides-Extra: dev
+Requires-Dist: pytest<9.0.0,>=8.3.0; extra == "dev"
+Requires-Dist: httpx<1.0.0,>=0.27.0; extra == "dev"
+Requires-Dist: pytest-asyncio<1.0.0,>=0.24.0; extra == "dev"
+Requires-Dist: aiosqlite<1.0.0,>=0.20.0; extra == "dev"
+
 # Fire Crust Back End
 
 Backend em Python com FastAPI e PostgreSQL para o site de pedidos da pizzaria Fire Crust.

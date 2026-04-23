@@ -8,7 +8,7 @@ load_dotenv()
 
 class Settings(BaseSettings):
     app_name: str = "Fire Crust SaaS API"
-    database_url: str = "postgresql+psycopg://firecrust:firecrust@localhost:5432/firecrust"
+    database_url: str = "postgresql+psycopg://firecrust:firecrust@localhost:5433/firecrust"
     jwt_secret_key: str = "change-me"
     jwt_algorithm: str = "HS256"
     access_token_expire_minutes: int = 720

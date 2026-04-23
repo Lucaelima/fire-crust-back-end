@@ -1,4 +1,3 @@
-version: '3.9'
 services:
   db:
     image: postgres:16
@@ -7,7 +6,7 @@ services:
       POSTGRES_USER: firecrust
       POSTGRES_PASSWORD: firecrust
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
@@ -16,7 +15,7 @@ services:
     depends_on:
       - db
     environment:
-      DATABASE_URL: postgresql+psycopg://firecrust:firecrust@db:5432/firecrust
+      DATABASE_URL: postgresql+psycopg://firecrust:firecrust@db:5433/firecrust
       JWT_SECRET_KEY: change-me
     ports:
       - "8000:8000"

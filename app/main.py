@@ -6,7 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.core import get_settings
 from app.db import Base, engine
-from app.routers import auth, dashboard, menu, orders
+from app.routers import auth, cart, dashboard, menu, orders
 
 # Configurar loop de eventos compatível com Psycopg no Windows
 asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
@@ -43,5 +43,6 @@ async def healthcheck() -> dict[str, str]:
 
 app.include_router(auth.router, prefix="/api/v1")
 app.include_router(menu.router, prefix="/api/v1")
+app.include_router(cart.router, prefix="/api/v1")
 app.include_router(orders.router, prefix="/api/v1")
 app.include_router(dashboard.router, prefix="/api/v1")

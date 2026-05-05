@@ -73,6 +73,17 @@ class OrderItemRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
 
+class CartItem(BaseModel):
+    menu_item: MenuItemRead = Field(serialization_alias="menuItem")
+    quantity: int
+
+    model_config = ConfigDict(from_attributes=True, populate_by_name=True)
+
+
+class CartItemsRequest(BaseModel):
+    items: list[OrderItemCreate] = Field(min_length=1)
+
+
 class OrderRead(BaseModel):
     id: int
     customer_id: int

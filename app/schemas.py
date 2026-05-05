@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from pydantic import BaseModel, ConfigDict, EmailStr, Field
+from pydantic import AliasChoices, BaseModel, ConfigDict, EmailStr, Field
 
 from app.models import MenuCategory, OrderStatus
 
@@ -71,6 +71,22 @@ class OrderItemRead(BaseModel):
     unit_price: float
 
     model_config = ConfigDict(from_attributes=True)
+
+
+class CartItem(BaseModel):
+    menu_item: MenuItemRead = Field(serialization_alias="menuItem")
+    quantity: int
+
+    model_config = ConfigDict(from_attributes=True, populate_by_name=True)
+
+
+class CartItemInput(BaseModel):
+    menu_item_id: int = Field(validation_alias=AliasChoices("menu_item_id", "menuItemId"))
+    quantity: int = Field(gt=0, le=20)
+
+
+class CartItemsRequest(BaseModel):
+    items: list[CartItemInput] = Field(min_length=1)
 
 
 class OrderRead(BaseModel):

@@ -38,4 +38,9 @@ async def login(payload: LoginRequest, db: AsyncSession = Depends(get_db)) -> To
     if not user or not verify_password(payload.password, user.hashed_password):
         raise HTTPException(status_code=401, detail="Invalid email or password")
 
-    return TokenResponse(access_token=create_access_token(str(user.id)))
+    token = create_access_token(str(user.id))
+
+    return RegisterResponse(
+        user=UserRead.model_validate(user),
+        access_token=token
+    )

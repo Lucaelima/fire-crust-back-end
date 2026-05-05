@@ -1,3 +1,21 @@
+-- Create ENUM type for category if not exists
+DO $$ BEGIN
+  CREATE TYPE menu_category AS ENUM ('pizza', 'drink', 'side', 'dessert');
+EXCEPTION
+  WHEN duplicate_object THEN null;
+END $$;
+
+-- Create menu_items table if not exists
+CREATE TABLE IF NOT EXISTS menu_items (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(120) NOT NULL UNIQUE,
+  description TEXT DEFAULT '',
+  category menu_category NOT NULL,
+  price FLOAT NOT NULL,
+  is_available BOOLEAN DEFAULT true
+);
+
+-- Insert menu items
 INSERT INTO menu_items (name, description, category, price, is_available)
 VALUES
   ('Pizza Margherita', 'Molho de tomate, muçarela, manjericão fresco e azeite', 'pizza', 49.90, true),

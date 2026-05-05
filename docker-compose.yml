@@ -6,7 +6,7 @@ services:
       POSTGRES_USER: firecrust
       POSTGRES_PASSWORD: firecrust
     ports:
-      - "5433:5432"
+      - "5434:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./db/seed_menu_items.sql:/docker-entrypoint-initdb.d/01_seed_menu_items.sql:ro
@@ -16,7 +16,7 @@ services:
     depends_on:
       - db
     environment:
-      DATABASE_URL: postgresql+psycopg://firecrust:firecrust@db:5433/firecrust
+      DATABASE_URL: postgresql+psycopg://firecrust:firecrust@db:5432/firecrust
       JWT_SECRET_KEY: change-me
     ports:
       - "8000:8000"
